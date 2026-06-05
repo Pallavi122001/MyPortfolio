@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pallavi Patel — React Native Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ── TOKENS ─────────────────────────────────────────── */
+        :root {
+            --bg: #0a0a0f;
+            --surface: #13131c;
+            --border: #1e1e2e;
+            --accent: #7c6aff;
+            --accent2: #ff6a9e;
+            --text: #e8e6f0;
+            --muted: #7c7a8e;
+            --card: #16161f;
+            --glow: rgba(124, 106, 255, 0.18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ── NOISE OVERLAY ───────────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.35;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 4rem;
+            background: rgba(10, 10, 15, 0.75);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.03em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* ── HERO ────────────────────────────────────────────── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 106, 255, 0.22) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 106, 158, 0.12) 0%, transparent 70%);
+            bottom: 0;
+            left: 10%;
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0.7;
+            }
+        }
+
+        .hero-content {
+            max-width: 720px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(124, 106, 255, 0.12);
+            border: 1px solid rgba(124, 106, 255, 0.35);
+            border-radius: 100px;
+            padding: 0.35rem 1rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: blink 1.4s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .hero-name {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3.2rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        .hero-name .accent {
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--muted);
+            margin-top: 0.8rem;
+            font-weight: 300;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        .hero-desc {
+            margin-top: 1.6rem;
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.75;
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+            animation: fadeUp 0.6s 0.4s ease both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.8rem;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.22s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 28px rgba(124, 106, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #9080ff;
+            box-shadow: 0 0 40px rgba(124, 106, 255, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3.5rem;
+            animation: fadeUp 0.6s 0.5s ease both;
+        }
+
+        .stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .stat-num span {
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 0.1rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── SECTION COMMON ──────────────────────────────────── */
+        section {
+            padding: 5rem 4rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-sub {
+            color: var(--muted);
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 500px;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        /* ── SKILLS ──────────────────────────────────────────── */
+        #skills {
+            background: var(--surface);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.4rem 1.6rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .skill-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.6rem;
+        }
+
+        .tag {
+            font-size: 0.72rem;
+            background: rgba(124, 106, 255, 0.1);
+            border: 1px solid rgba(124, 106, 255, 0.2);
+            color: var(--accent);
+            border-radius: 4px;
+            padding: 0.15rem 0.5rem;
+        }
+
+        /* ── PROJECTS ────────────────────────────────────────── */
+        #projects {
+            background: var(--bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: border-color 0.2s, transform 0.22s, box-shadow 0.22s;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(124, 106, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(124, 106, 255, 0.12);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .project-emoji {
+            font-size: 2rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .project-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .project-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .project-features li {
+            font-size: 0.85rem;
+            color: var(--muted);
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .project-features li::before {
+            content: '→';
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .stack-tag {
+            font-size: 0.72rem;
+            background: rgba(255, 106, 158, 0.08);
+            border: 1px solid rgba(255, 106, 158, 0.2);
+            color: var(--accent2);
+            border-radius: 4px;
+            padding: 0.15rem 0.5rem;
+        }
+
+        .playstore-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            background: rgba(52, 199, 89, 0.1);
+            border: 1px solid rgba(52, 199, 89, 0.25);
+            color: #34c759;
+            border-radius: 4px;
+            padding: 0.2rem 0.6rem;
+            width: fit-content;
+        }
+
+        /* ── EXPERIENCE ──────────────────────────────────────── */
+        #experience {
+            background: var(--surface);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 12px;
+            bottom: 12px;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 14px rgba(124, 106, 255, 0.6);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-period {
+            font-size: 0.78rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .timeline-role {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .timeline-company {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        .timeline-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .timeline-points li {
+            font-size: 0.88rem;
+            color: var(--muted);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .timeline-points li::before {
+            content: '◆';
+            color: var(--accent);
+            font-size: 0.5rem;
+            margin-top: 0.35rem;
+            flex-shrink: 0;
+        }
+
+        /* ── CONTACT ─────────────────────────────────────────── */
+        #contact {
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .contact-inner {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .contact-inner .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        .contact-desc {
+            color: var(--muted);
+            margin: 1rem 0 2.5rem;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.88rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .contact-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .contact-chip svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────── */
+        footer {
+            padding: 2rem 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* ── SCROLL REVEAL ───────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────────── */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            #hero,
+            section {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-logo" href="#hero">Pallavi<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+        <div class="hero-content">
+            <div class="hero-badge"><span class="badge-dot"></span> Available for new opportunities</div>
+            <h1 class="hero-name">Pallavi<br><span class="accent">Patel</span></h1>
+            <p class="hero-title">React Native Developer · Mobile Craftsperson</p>
+            <p class="hero-desc">
+                2 years building production-grade cross-platform apps for iOS &amp; Android.
+                From architecture to Play Store — I own the full mobile lifecycle.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Projects →</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">2<span>+</span></div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div>
+                    <div class="stat-num">3<span>+</span></div>
+                    <div class="stat-label">Apps Shipped</div>
+                </div>
+                <div>
+                    <div class="stat-num">1<span>↑</span></div>
+                    <div class="stat-label">Live on Play Store</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-header reveal">
+            <div class="section-label">What I work with</div>
+            <h2 class="section-title">Tech Stack</h2>
+            <p class="section-sub">My go-to tools for building fast, reliable mobile experiences.</p>
+        </div>
+        <div class="skills-grid reveal">
+            <div class="skill-card">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">Mobile</div>
+                <div class="skill-tags">
+                    <span class="tag">React Native</span>
+                    <span class="tag">Expo</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">Play Store</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-name">Frontend</div>
+                <div class="skill-tags">
+                    <span class="tag">JavaScript ES6+</span>
+                    <span class="tag">Tailwind CSS</span>
+                    <span class="tag">C++</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <div class="skill-name">Backend &amp; APIs</div>
+                <div class="skill-tags">
+                    <span class="tag">REST APIs</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">MongoDB</span>
+                    <!-- <span class="tag">Clerk Auth</span> -->
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💳</div>
+                <div class="skill-name">Payments &amp; Push</div>
+                <div class="skill-tags">
+                    <span class="tag">Razorpay</span>
+                    <span class="tag">Push Notifications</span>
+                    <span class="tag">Subscriptions</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <div class="skill-name">Tools</div>
+                <div class="skill-tags">
+                    <span class="tag">Git / GitHub</span>
+                    <span class="tag">VS Code</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🗺️</div>
+                <div class="skill-name">Integrations</div>
+                <div class="skill-tags">
+                    <span class="tag">Live GPS Tracking</span>
+                    <span class="tag">Real-time Polling</span>
+                    <span class="tag">HRMS Modules</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-header reveal">
+            <div class="section-label">What I've built</div>
+            <h2 class="section-title">Key Projects</h2>
+            <p class="section-sub">Production apps I've taken from zero to shipped.</p>
+        </div>
+        <div class="projects-grid">
+
+            <!-- Brahmin Milan -->
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <div class="project-emoji">🪔</div>
+                    <div class="project-links">
+                        <!-- ✏️ UPDATE: Replace href below with actual Play Store URL when confirmed -->
+                        <a href="https://play.google.com/store/search?q=brahmin+milan&c=apps&hl=en_IN" target="_blank"
+                            rel="noopener" class="icon-btn" title="Play Store">▶</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="playstore-badge">✓ Live on Play Store</div>
+                </div>
+                <div class="project-name">Brahmin Milan</div>
+                <p class="project-desc">Matrimonial &amp; community super-app for the Brahmin community with multiple
+                    profile types, premium subscriptions, and an event publishing workflow.</p>
+                <ul class="project-features">
+                    <li>Biodata, Pandit, Jyotish, Kathavachak &amp; Activist multi-profile system</li>
+                    <li>Razorpay subscriptions for premium profile access</li>
+                    <li>Firebase interest matching &amp; push notifications</li>
+                    <li>Activist approval flow for Events, Dharamshala &amp; Committee publishing</li>
+                </ul>
+                <div class="project-stack">
+                    <span class="stack-tag">React Native</span>
+                    <span class="stack-tag">Firebase</span>
+                    <span class="stack-tag">Razorpay</span>
+                    <span class="stack-tag">REST APIs</span>
+                </div>
+            </div>
+
+            <!-- GS Tourism -->
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <div class="project-emoji">✈️</div>
+                    <div class="project-links">
+                        <!-- ✏️ UPDATE: Replace href with GS Tourism Play Store URL once live -->
+                        <a href="#" class="icon-btn" title="Play Store — coming soon">▶</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="playstore-badge"
+                        style="background:rgba(255,149,0,0.1);border-color:rgba(255,149,0,0.25);color:#ff9500;">⏳ Under
+                        Review</div>
+                </div>
+                <div class="project-name">GS Tourism</div>
+                <p class="project-desc">Full-stack travel booking &amp; HRMS platform with real-time availability sync,
+                    company wallet payments, and employee management modules.</p>
+                <ul class="project-features">
+                    <li>Hotel, Bus &amp; Flight booking with real-time API sync</li>
+                    <li>HRMS: Attendance, Leave management &amp; Salary Slips</li>
+                    <li>Company wallet payments via Razorpay</li>
+                </ul>
+                <div class="project-stack">
+                    <span class="stack-tag">React Native</span>
+                    <span class="stack-tag">REST APIs</span>
+                    <span class="stack-tag">Razorpay</span>
+                </div>
+            </div>
+
+            <!-- TractorWalla -->
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <div class="project-emoji">🚜</div>
+                    <div class="project-links">
+                        <!-- ✏️ UPDATE: Add Play Store link if published -->
+                        <a href="#" class="icon-btn" title="Project link">↗</a>
+                    </div>
+                </div>
+                <div class="project-name">TractorWalla &amp; TractorWalla Partner</div>
+                <p class="project-desc">Multi-role agri-tech platform connecting customers, service engineers, and
+                    suppliers — with live GPS dispatch and end-to-end payment flows.</p>
+                <ul class="project-features">
+                    <li>3-role system: Customers, Service Engineers &amp; Suppliers</li>
+                    <li>Service booking &amp; spare-parts management</li>
+                    <li>Live GPS tracking with real-time API polling for field dispatch</li>
+                    <li>End-to-end Razorpay payment flows</li>
+                </ul>
+                <div class="project-stack">
+                    <span class="stack-tag">React Native</span>
+                    <span class="stack-tag">REST APIs</span>
+                    <span class="stack-tag">Razorpay</span>
+                    <span class="stack-tag">GPS</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-header reveal">
+            <div class="section-label">Where I've worked</div>
+            <h2 class="section-title">Experience</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-period">Dec 2024 – Present</div>
+                    <div class="timeline-role">React Native Developer</div>
+                    <div class="timeline-company">WebSeeder Technologies · Remote</div>
+                    <ul class="timeline-points">
+                        <li>Building cross-platform iOS &amp; Android apps with React Native &amp; Expo, published on
+                            Play Store</li>
+                        <li>Integrating REST APIs, Clerk auth, Razorpay payments, and Firebase push notifications</li>
+                        <li>Optimising performance and collaborating with backend teams on scalable mobile architectures
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"
+                    style="background: var(--accent2); box-shadow: 0 0 14px rgba(255,106,158,0.5);"></div>
+                <div class="timeline-content">
+                    <div class="timeline-period">May 2024 – Nov 2024</div>
+                    <div class="timeline-role">React Native Developer</div>
+                    <div class="timeline-company">SRN Infotech · Indore, MP</div>
+                    <ul class="timeline-points">
+                        <li>Built and maintained production React Native apps across multiple client projects</li>
+                        <li>Implemented API integrations and pixel-perfect responsive user interfaces</li>
+                        <li>Improved app stability and load times through profiling and backend collaboration</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Education inline -->
+        <div style="margin-top:3rem; padding: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 16px; max-width: 500px;"
+            class="reveal">
+            <div class="section-label" style="margin-bottom:0.3rem;">Education</div>
+            <div style="font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; margin-bottom:0.2rem;">B.Tech
+                — Computer Science Engineering</div>
+            <div style="color:var(--muted); font-size:0.9rem; margin-bottom:0.6rem;">SVIIT, Indore · 2020 – 2024</div>
+            <div
+                style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(124,106,255,0.1); border:1px solid rgba(124,106,255,0.25); border-radius:6px; padding:0.25rem 0.8rem; font-size:0.82rem; color:var(--accent);">
+                CGPA: 8.14 / 10
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact-inner reveal">
+            <div class="section-label">Let's connect</div>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-desc">Open to new roles, freelance projects, or just a friendly chat about mobile
+                development.</p>
+            <a href="mailto:pallavipatel782@gmail.com" class="btn btn-primary"
+                style="margin: 0 auto; display:inline-flex;">
+                pallavipatel782@gmail.com →
+            </a>
+            <div class="contact-links">
+                <a href="tel:+919893458940" class="contact-chip">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path
+                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.09 2.16 2 2 0 012.07 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
+                    </svg>
+                    +91 98934 58940
+                </a>
+                <a href="https://linkedin.com/in/pallavi-patel-480136245" target="_blank" rel="noopener"
+                    class="contact-chip">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/Pallavi122001" target="_blank" rel="noopener" class="contact-chip">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>© 2025 Pallavi Patel · React Native Developer · Indore, MP</span>
+        <a href="#hero">Back to top ↑</a>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
