@@ -86,9 +86,9 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             transition: padding 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        background-color 0.35s ease,
-                        backdrop-filter 0.35s ease,
-                        box-shadow 0.35s ease;
+                background-color 0.35s ease,
+                backdrop-filter 0.35s ease,
+                box-shadow 0.35s ease;
         }
 
         /* Shrink header visual transition on scroll classes (fallback) */
@@ -644,10 +644,13 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 8px var(--pulse-color, rgba(124, 106, 255, 0.5));
                 transform: scale(1);
             }
+
             50% {
                 box-shadow: 0 0 20px var(--pulse-color, rgba(124, 106, 255, 0.88));
                 transform: scale(1.06);
@@ -887,11 +890,11 @@
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div>
-                    <div class="stat-num">3<span>+</span></div>
+                    <div class="stat-num">4<span>+</span></div>
                     <div class="stat-label">Apps Shipped</div>
                 </div>
                 <div>
-                    <div class="stat-num">2<span>↑</span></div>
+                    <div class="stat-num">3<span>↑</span></div>
                     <div class="stat-label">Live on Play Store</div>
                 </div>
             </div>
@@ -1041,7 +1044,8 @@
                 </div>
                 <div>
                     <div class="playstore-badge"
-                        style="background:rgba(124,106,255,0.08);border-color:rgba(124,106,255,0.2);color:var(--accent);">✓ Shipped &amp; Maintained</div>
+                        style="background:rgba(124,106,255,0.08);border-color:rgba(124,106,255,0.2);color:var(--accent);">
+                        ✓ Shipped &amp; Maintained</div>
                 </div>
                 <div class="project-name">TractorWalla &amp; TractorWalla Partner</div>
                 <p class="project-desc">Multi-role agri-tech platform connecting customers, service engineers, and
@@ -1060,6 +1064,35 @@
                 </div>
             </div>
 
+            <!-- Leafkaart -->
+            <div class="project-card reveal">
+                <div class="project-top">
+                    <div class="project-emoji">🛍️</div>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.leafkaart.app" target="_blank"
+                            rel="noopener" class="icon-btn" title="Play Store">▶</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="playstore-badge">✓ Live on Play Store</div>
+                </div>
+                <div class="project-name">Leafkaart</div>
+                <p class="project-desc">Feature‑rich e‑commerce mobile application focused on seamless product
+                    discovery, order management, and customer support workflows.</p>
+                <ul class="project-features">
+                    <li>Secure authentication with centralized Axios API layer</li>
+                    <li>Order creation, history, cancellations, returns, replacements</li>
+                    <li>Image upload support for returns/replacements using FormData</li>
+                    <li>Robust error handling, request logging, and API response management</li>
+                </ul>
+                <div class="project-stack">
+                    <span class="stack-tag">React Native</span>
+                    <span class="stack-tag">Redux Toolkit</span>
+                    <span class="stack-tag">Axios</span>
+                    <span class="stack-tag">REST APIs</span>
+                    <span class="stack-tag">Firebase</span>
+                </div>
+            </div>
         </div>
     </section>
 
