@@ -4,7 +4,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pallavi Patel — React Native Developer</title>
+    <title>Pallavi Patel — Senior React Native Developer</title>
+    <meta name="description"
+        content="Pallavi Patel — Senior React Native Developer specializing in building high-performance cross-platform Android & iOS apps with React Native CLI, Expo, Redux Toolkit, Firebase, Razorpay, and FCM." />
+    <meta name="keywords"
+        content="React Native Developer, Mobile Architect, React Native CLI, Expo, TypeScript, Redux Toolkit, Firebase FCM, Razorpay, Play Store, Indore" />
+    <meta name="author" content="Pallavi Patel" />
+    <meta name="theme-color" content="#0a0a0f" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pallavi Patel — Senior React Native Developer" />
+    <meta property="og:description"
+        content="Senior React Native Developer with 2+ years experience building production Android & iOS mobile apps." />
+    <meta property="og:site_name" content="Pallavi Patel Portfolio" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pallavi Patel — Senior React Native Developer" />
+    <meta name="twitter:description"
+        content="Senior React Native Developer with 2+ years experience building production Android & iOS mobile apps." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -149,6 +168,106 @@
 
         .nav-links a:hover {
             color: var(--text);
+        }
+
+        /* ── PROJECT FILTERS ── */
+        .project-filters {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 0.55rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--text);
+            border-color: rgba(124, 106, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 18px var(--glow);
+        }
+
+        /* ── SENIOR ARCHITECTURE GRID ── */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .arch-card {
+            background: linear-gradient(145deg, rgba(19, 19, 28, 0.9), rgba(22, 22, 31, 0.6));
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.6rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .arch-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(124, 106, 255, 0.4);
+        }
+
+        .arch-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .arch-desc {
+            font-size: 0.86rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ── TOAST NOTIFICATION ── */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.8rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ── HERO ────────────────────────────────────────────── */
@@ -317,7 +436,7 @@
             align-items: center;
             font-size: 1.4rem;
             color: var(--text);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(124, 106, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(124, 106, 255, 0.2);
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             z-index: 5;
         }
@@ -328,25 +447,60 @@
             box-shadow: 0 10px 30px rgba(255, 106, 158, 0.4), inset 0 0 15px rgba(255, 106, 158, 0.3);
             cursor: pointer;
         }
-        
-        .orbit-1 { top: -25px; left: 50%; transform: translateX(-50%); } 
-        .orbit-2 { bottom: 35px; right: 35px; } 
-        .orbit-3 { top: 55px; left: 35px; } 
+
+        .orbit-1 {
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .orbit-2 {
+            bottom: 35px;
+            right: 35px;
+        }
+
+        .orbit-3 {
+            top: 55px;
+            left: 35px;
+        }
 
         @keyframes pulse-glow {
-            0% { opacity: 0.6; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1.1); }
+            0% {
+                opacity: 0.6;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
         }
 
         @keyframes pulse-ring {
-            0% { transform: translate(-50%, -50%) scale(0.85); box-shadow: 0 0 0 0 rgba(124, 106, 255, 0.6); }
-            70% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 20px rgba(124, 106, 255, 0); }
-            100% { transform: translate(-50%, -50%) scale(0.85); box-shadow: 0 0 0 0 rgba(124, 106, 255, 0); }
+            0% {
+                transform: translate(-50%, -50%) scale(0.85);
+                box-shadow: 0 0 0 0 rgba(124, 106, 255, 0.6);
+            }
+
+            70% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 0 20px rgba(124, 106, 255, 0);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(0.85);
+                box-shadow: 0 0 0 0 rgba(124, 106, 255, 0);
+            }
         }
 
         @keyframes spin-slow {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         .floating-badge {
@@ -359,7 +513,7 @@
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--text);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             animation: float 6s ease-in-out infinite;
             display: flex;
             align-items: center;
@@ -386,8 +540,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
         }
 
         .hero-badge {
@@ -658,7 +819,7 @@
             background: rgba(124, 106, 255, 0.08);
             border: 1px solid rgba(124, 106, 255, 0.2);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .skill-card:hover .skill-icon {
@@ -755,14 +916,14 @@
             align-items: flex-start;
         }
 
-        
+
         .skill-icon svg {
             width: 32px;
             height: 32px;
             stroke: var(--accent);
             filter: drop-shadow(0 0 10px rgba(124, 106, 255, 0.4));
         }
-        
+
         .project-emoji {
             font-size: 2rem;
             display: flex;
@@ -1074,23 +1235,34 @@
                 text-align: center;
                 gap: 3rem;
             }
+
             .hero-content {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
+
             .hero-desc {
                 margin-left: auto;
                 margin-right: auto;
             }
-            .hero-cta, .hero-stats {
+
+            .hero-cta,
+            .hero-stats {
                 justify-content: center;
             }
+
             .hero-visual {
                 margin-top: 1rem;
             }
-            .badge-1 { left: -5%; }
-            .badge-2 { right: -5%; }
+
+            .badge-1 {
+                left: -5%;
+            }
+
+            .badge-2 {
+                right: -5%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1159,9 +1331,11 @@
             <div class="hero-content">
                 <div class="hero-badge"><span class="badge-dot"></span> Available for new opportunities</div>
                 <h1 class="hero-name">Pallavi<br><span class="accent">Patel</span></h1>
-                <p class="hero-title">React Native Developer · Mobile Craftsperson</p>
+                <p class="hero-title">React Native Developer · Mobile Architect</p>
                 <p class="hero-desc">
-                    React Native Developer specializing in building high-performance cross-platform Android and iOS apps using React Native CLI and Expo. Passionate about clean code, scalable architecture, and delivering user-centric mobile experiences.
+                    React Native Developer specializing in building scalable, enterprise-grade Android & iOS
+                    applications. Expertise in native module bridging, FCM push notifications with deep-linking, Redux
+                    Toolkit state architecture, Razorpay payment integrations, and automated Play Store deployments.
                 </p>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">View Projects →</a>
@@ -1173,11 +1347,11 @@
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div>
-                        <div class="stat-num">4<span>+</span></div>
+                        <div class="stat-num">5<span>+</span></div>
                         <div class="stat-label">Apps Shipped</div>
                     </div>
                     <div>
-                        <div class="stat-num">3<span>↑</span></div>
+                        <div class="stat-num">4<span>↑</span></div>
                         <div class="stat-label">Live on Play Store</div>
                     </div>
                 </div>
@@ -1191,7 +1365,11 @@
                     <div class="ring ring-1"></div>
                     <div class="tech-icon-center"><span>&lt;/&gt;</span></div>
                     <div class="orbit-icon orbit-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
                     </div>
                     <div class="orbit-icon orbit-3">⚡</div>
                 </div>
@@ -1208,7 +1386,11 @@
         </div>
         <div class="skills-grid reveal">
             <div class="skill-card">
-                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
+                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg></div>
                 <div class="skill-name">Mobile & Core</div>
                 <div class="skill-tags">
                     <span class="tag">React Native CLI</span>
@@ -1219,7 +1401,10 @@
                 </div>
             </div>
             <div class="skill-card">
-                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg></div>
                 <div class="skill-name">Languages & State</div>
                 <div class="skill-tags">
                     <span class="tag">JavaScript (ES6+)</span>
@@ -1231,7 +1416,12 @@
                 </div>
             </div>
             <div class="skill-card">
-                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div>
+                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                    </svg></div>
                 <div class="skill-name">Networking & Auth</div>
                 <div class="skill-tags">
                     <span class="tag">REST APIs</span>
@@ -1241,7 +1431,11 @@
                 </div>
             </div>
             <div class="skill-card">
-                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div>
+                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg></div>
                 <div class="skill-name">Firebase & Storage</div>
                 <div class="skill-tags">
                     <span class="tag">FCM & Analytics</span>
@@ -1251,7 +1445,11 @@
                 </div>
             </div>
             <div class="skill-card">
-                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></div>
+                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg></div>
                 <div class="skill-name">Maps & Payments</div>
                 <div class="skill-tags">
                     <span class="tag">Google Maps API</span>
@@ -1260,7 +1458,14 @@
                 </div>
             </div>
             <div class="skill-card">
-                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+                <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg></div>
                 <div class="skill-name">Tools & Deployment</div>
                 <div class="skill-tags">
                     <span class="tag">Git & GitHub</span>
@@ -1269,6 +1474,35 @@
                     <span class="tag">VS Code</span>
                     <span class="tag">Android Studio</span>
                     <span class="tag">Postman</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SENIOR ARCHITECTURE HIGHLIGHTS -->
+        <div style="margin-top: 3.5rem;" class="reveal">
+            <div class="section-label" style="text-align: center; margin-bottom: 0.4rem;">Engineering Core</div>
+            <h3 style="font-family: 'Syne', sans-serif; font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+                Senior Mobile Architecture Practices</h3>
+            <div class="architecture-grid">
+                <div class="arch-card">
+                    <div class="arch-title">⚡ 60 FPS Performance & UI Tuning</div>
+                    <div class="arch-desc">Optimizing FlatList virtualization, re-render prevention with memoization,
+                        Hermes JS engine optimization, and memory leak profiling.</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-title">🔔 Deep Linking & FCM Pipeline</div>
+                    <div class="arch-desc">Handling foreground, background & killed notification states with custom
+                        payload handlers and direct screen intent routing.</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-title">🛡️ Centralized State & Data Layer</div>
+                    <div class="arch-desc">Scalable Redux Toolkit slices, RTK Query & Axios interceptors with encrypted
+                        storage fallback for seamless offline resilience.</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-title">💳 Secure Payments & Live SDKs</div>
+                    <div class="arch-desc">Razorpay payment gateway workflows with webhook verification, coupled with
+                        Google Maps SDK live coordinate tracking.</div>
                 </div>
             </div>
         </div>
@@ -1281,12 +1515,96 @@
             <h2 class="section-title">Key Projects</h2>
             <p class="section-sub">Production apps I've taken from zero to shipped.</p>
         </div>
+
+        <!-- INTERACTIVE PROJECT FILTERS -->
+        <div class="project-filters reveal">
+            <button class="filter-btn active" data-filter="all">All Projects (5)</button>
+            <button class="filter-btn" data-filter="freelance">Freelance Apps (2)</button>
+            <button class="filter-btn" data-filter="company">Enterprise / Company Apps (3)</button>
+        </div>
+
         <div class="projects-grid">
 
-            <!-- Brahmin Milan -->
-            <div class="project-card reveal">
+            <!-- SmartDhobi (Freelance) -->
+            <div class="project-card reveal" data-category="freelance">
                 <div class="project-top">
-                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                            <circle cx="12" cy="13" r="5"></circle>
+                            <path d="M12 10a3 3 0 0 1 3 3"></path>
+                            <circle cx="7" cy="6" r="1"></circle>
+                            <circle cx="10" cy="6" r="1"></circle>
+                        </svg></div>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.smartdhobi" target="_blank"
+                            rel="noopener" class="icon-btn" title="Play Store">▶</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="playstore-badge">✓ Live on Play Store</div>
+                </div>
+                <div class="project-name">SmartDhobi (Freelance)</div>
+                <p class="project-desc">Dual-role on-demand laundry marketplace application serving both customers and
+                    service providers with live order tracking.</p>
+                <ul class="project-features">
+                    <li>Customer order placement supporting Cash on Delivery (COD) & Razorpay online payments</li>
+                    <li>Dhobi order acceptance workflow & rider assignment for delivery dispatching</li>
+                    <li>Firebase Cloud Messaging (FCM) push notifications with deep-linking</li>
+                    <li>Redux Toolkit global state management & dynamic order tracking timeline</li>
+                </ul>
+                <div class="project-stack">
+                    <span class="stack-tag">React Native</span>
+                    <span class="stack-tag">TypeScript</span>
+                    <span class="stack-tag">Redux Toolkit</span>
+                    <span class="stack-tag">Firebase</span>
+                    <span class="stack-tag">Razorpay</span>
+                </div>
+            </div>
+
+            <!-- LeafKaart (Freelance) -->
+            <div class="project-card reveal" data-category="freelance">
+                <div class="project-top">
+                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg></div>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.leafkaart.app" target="_blank"
+                            rel="noopener" class="icon-btn" title="Play Store">▶</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="playstore-badge">✓ Live on Play Store</div>
+                </div>
+                <div class="project-name">LeafKaart (Freelance)</div>
+                <p class="project-desc">Feature-rich e-commerce mobile application for product discovery, shopping, and
+                    order management.</p>
+                <ul class="project-features">
+                    <li>Secure authentication and centralized Axios API layer</li>
+                    <li>Order history, cancellations, returns, and replacements</li>
+                    <li>Image uploads for returns/replacements using FormData</li>
+                    <li>Enhanced reliability through error handling and request logging</li>
+                </ul>
+                <div class="project-stack">
+                    <span class="stack-tag">React Native</span>
+                    <span class="stack-tag">REST APIs</span>
+                    <span class="stack-tag">Axios</span>
+                    <span class="stack-tag">Firebase</span>
+                </div>
+            </div>
+
+            <!-- Brahmin Milan -->
+            <div class="project-card reveal" data-category="company">
+                <div class="project-top">
+                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg></div>
                     <div class="project-links">
                         <a href="https://play.google.com/store/search?q=brahmin+milan&c=apps&hl=en_IN" target="_blank"
                             rel="noopener" class="icon-btn" title="Play Store">▶</a>
@@ -1296,7 +1614,8 @@
                     <div class="playstore-badge">✓ Live on Play Store</div>
                 </div>
                 <div class="project-name">Brahmin Milan</div>
-                <p class="project-desc">Community and matrimonial platform with profile matching, event management, and social networking features.</p>
+                <p class="project-desc">Community and matrimonial platform with profile matching, event management, and
+                    social networking features.</p>
                 <ul class="project-features">
                     <li>Developed premium membership and profile management</li>
                     <li>Integrated Razorpay subscriptions and secure authentication</li>
@@ -1312,9 +1631,14 @@
             </div>
 
             <!-- Geo Holiday -->
-            <div class="project-card reveal">
+            <div class="project-card reveal" data-category="company">
                 <div class="project-top">
-                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 5.3-2.7 2.7-2.6-.8c-.4-.1-.8.2-1 .5L2 17l4.3 2.7L9 24l1.2-.7c.3-.2.6-.6.5-1l-.8-2.6 2.7-2.7L18 23l1.2-.7c.4-.2.7-.6.6-1.1z"></path></svg></div>
+                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 5.3-2.7 2.7-2.6-.8c-.4-.1-.8.2-1 .5L2 17l4.3 2.7L9 24l1.2-.7c.3-.2.6-.6.5-1l-.8-2.6 2.7-2.7L18 23l1.2-.7c.4-.2.7-.6.6-1.1z">
+                            </path>
+                        </svg></div>
                     <div class="project-links">
                         <a href="https://play.google.com/store/apps/details?id=com.geoholidays" target="_blank"
                             rel="noopener" class="icon-btn" title="Play Store">▶</a>
@@ -1324,7 +1648,8 @@
                     <div class="playstore-badge">✓ Live on Play Store</div>
                 </div>
                 <div class="project-name">Geo Holiday</div>
-                <p class="project-desc">Travel booking application supporting hotel, flight, bus, and holiday package reservations.</p>
+                <p class="project-desc">Travel booking application supporting hotel, flight, bus, and holiday package
+                    reservations.</p>
                 <ul class="project-features">
                     <li>Integrated REST APIs for booking management and travel services</li>
                     <li>Implemented Google Maps and Firebase notifications</li>
@@ -1341,9 +1666,17 @@
             </div>
 
             <!-- TractorWalla Partner -->
-            <div class="project-card reveal">
+            <div class="project-card reveal" data-category="company">
                 <div class="project-top">
-                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15" r="4.5"></circle><circle cx="18" cy="17" r="2.5"></circle><path d="M11 15V8h4l3 3v4"></path><path d="M7 10.5h4"></path><path d="M3 15h1v-2h-1"></path><path d="M15 8V4h1v4"></path></svg></div>
+                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="7" cy="15" r="4.5"></circle>
+                            <circle cx="18" cy="17" r="2.5"></circle>
+                            <path d="M11 15V8h4l3 3v4"></path>
+                            <path d="M7 10.5h4"></path>
+                            <path d="M3 15h1v-2h-1"></path>
+                            <path d="M15 8V4h1v4"></path>
+                        </svg></div>
                     <div class="project-links">
                         <a href="#" class="icon-btn" title="Project link">↗</a>
                     </div>
@@ -1354,7 +1687,8 @@
                         ✓ In Development / Maintained</div>
                 </div>
                 <div class="project-name">TractorWalla Partner</div>
-                <p class="project-desc">Multi-role agri-tech platform for Customers, Service Engineers, and Suppliers.</p>
+                <p class="project-desc">Multi-role agri-tech platform for Customers, Service Engineers, and Suppliers.
+                </p>
                 <ul class="project-features">
                     <li>Live engineer tracking with Google Maps and real-time location updates</li>
                     <li>Service booking, job tracking, and spare parts management</li>
@@ -1367,34 +1701,6 @@
                     <span class="stack-tag">REST APIs</span>
                     <span class="stack-tag">Google Maps</span>
                     <span class="stack-tag">Razorpay</span>
-                </div>
-            </div>
-
-            <!-- LeafKaart (Freelance) -->
-            <div class="project-card reveal">
-                <div class="project-top">
-                    <div class="project-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.leafkaart.app" target="_blank"
-                            rel="noopener" class="icon-btn" title="Play Store">▶</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="playstore-badge">✓ Live on Play Store</div>
-                </div>
-                <div class="project-name">LeafKaart (Freelance)</div>
-                <p class="project-desc">Feature-rich e-commerce mobile application for product discovery, shopping, and order management.</p>
-                <ul class="project-features">
-                    <li>Secure authentication and centralized Axios API layer</li>
-                    <li>Order history, cancellations, returns, and replacements</li>
-                    <li>Image uploads for returns/replacements using FormData</li>
-                    <li>Enhanced reliability through error handling and request logging</li>
-                </ul>
-                <div class="project-stack">
-                    <span class="stack-tag">React Native</span>
-                    <span class="stack-tag">REST APIs</span>
-                    <span class="stack-tag">Axios</span>
-                    <span class="stack-tag">Firebase</span>
                 </div>
             </div>
         </div>
@@ -1415,10 +1721,13 @@
                     <div class="timeline-role">React Native Developer</div>
                     <div class="timeline-company">WebSeeder Technologies · Remote</div>
                     <ul class="timeline-points">
-                        <li>Developed and maintained 5+ cross-platform mobile applications using React Native CLI and Expo.</li>
-                        <li>Integrated REST APIs, Clerk Authentication, Razorpay, Firebase (FCM, Analytics, Crashlytics).</li>
+                        <li>Developed and maintained 5+ cross-platform mobile applications using React Native CLI and
+                            Expo.</li>
+                        <li>Integrated REST APIs, Clerk Authentication, Razorpay, Firebase (FCM, Analytics,
+                            Crashlytics).</li>
                         <li>Published applications on Google Play Store and managed production release builds.</li>
-                        <li>Optimized app performance by reducing re-renders, refining API calls, and building reusable components.</li>
+                        <li>Optimized app performance by reducing re-renders, refining API calls, and building reusable
+                            components.</li>
                     </ul>
                 </div>
             </div>
@@ -1433,7 +1742,8 @@
                     <ul class="timeline-points">
                         <li>Developed React Native applications with reusable components and responsive UI.</li>
                         <li>Integrated REST APIs, Firebase services, authentication, and third-party SDKs.</li>
-                        <li>Optimized application performance, resolved production issues, and collaborated with backend and QA teams.</li>
+                        <li>Optimized application performance, resolved production issues, and collaborated with backend
+                            and QA teams.</li>
                     </ul>
                 </div>
             </div>
@@ -1499,6 +1809,9 @@
         <a href="#hero">Back to top ↑</a>
     </footer>
 
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast" class="toast-notification">✓ Copied to clipboard!</div>
+
     <script>
         // Scroll reveal
         const observer = new IntersectionObserver(entries => {
@@ -1508,7 +1821,7 @@
 
         // Interactive mouse glow tracking
         const cursorGlow = document.getElementById('cursor-glow');
-        if (window.matchMedia('(pointer: fine)').matches) {
+        if (window.matchMedia('(pointer: fine)').matches && cursorGlow) {
             document.addEventListener('mousemove', (e) => {
                 cursorGlow.style.opacity = '1';
                 cursorGlow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
@@ -1531,6 +1844,59 @@
             window.addEventListener('scroll', checkScroll, { passive: true });
             checkScroll(); // Run initial check
         }
+
+        // Project filtering logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(15px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 200);
+                    }
+                });
+            });
+        });
+
+        // Toast notification trigger helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Copy contact details on click
+        document.querySelectorAll('.contact-chip, a[href^="mailto:"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const text = link.textContent.trim().replace('→', '').trim();
+                if (text.includes('@') || text.includes('+91')) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        showToast(`✓ Copied ${text} to clipboard!`);
+                    }).catch(() => { });
+                }
+            });
+        });
 
         // Set dynamic copyright year
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
